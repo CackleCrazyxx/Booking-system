@@ -1,0 +1,28 @@
+#################################
+# build Booking window           #
+#################################
+Booking= Window(app,title='Book Now', width=500)# layout = 'grid') # names the window which has everything in
+Booking.hide() # hides the window until called to open
+#
+box = Box(Booking, layout="grid")
+Booking.bg = "antiquewhite1" # changes the background
+booking_message = Text(box, text="Book a Table!", grid = [1,0],align="left")#this tells the user what the window is for
+People_booking = Text(box, text= "No. of People:", grid =[0,1], align="left")#this tells the user what to enter
+People_amount = Combo(box, options = [1,2,3,4,5,6,7,8,9,10,11,12],width = 15, grid = [1,1], align="left")#this gives the user space to enter the name
+Date_message = Text(box, text ="Select a date:", grid = [0,2], align="left")#this tells the user what to choose
+Date_chosen = TextBox(box, text ="", grid = [1,2])#this shows the user what date they had chose
+Booking_date = PushButton(box, text = "--Please Select--", command = date_btn,grid = [2,2]) #this allows the calander to pop up and let the user 
+Time_message = Text(box, text ="Select a time:", grid = [0,3]) #tells the user to select the time
+Time_choice = Combo(box, options = ["11:00","11:30","12:00","12:30","13:00", "15:00","15:30", "14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","19:00","19:30","20:00"],width = 15, grid = [1,3], align="left")#this gives the user space to enter the name
+Special_message = Text(box, text= "Special request:", grid = [0,4], align="left") #tells the user what they can do
+Special_text = TextBox(box, text= "None",width = 20, grid = [1,4], align="left") #the  lets the user input some special request
+book_button = PushButton(box, text='Book',args=[People_amount, Date_chosen, Time_choice, Special_text],command=booking_validation,width = 15, grid = [1,5], align="left") # button that allows the user to submit their review
+pic = Picture(Booking, image="sushi logo.JPG", width = 285, height = 285) #adds a picture
+
+menubar = MenuBar(Booking,
+                  toplevel=["Apperance","Fonts","Size"],
+                  options=[
+                      [ ["Light Mode", Light_Mode], ["Dark Mode", Dark_Mode] ],
+					  [ ["Courier", Courier_font], ["Verdana", Verdana_font], ["Helvetica", Helvetica_font] ],
+					  [["10%", Zoom10],["20%", Zoom10],["30%", Zoom10],["40%", Zoom10],["50%", Zoom10]]
+                  ])
