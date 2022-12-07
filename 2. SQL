@@ -1,0 +1,42 @@
+sql = """
+CREATE TABLE "Customer_Table" ( 
+"CustomerID" INTEGER NOT NULL,
+"FCustomerName" TEXT,
+"LCustomerName" TEXT,
+"CustomerUserName" TEXT,
+"CustomerPwd" TEXT,
+"CustomerEmailAddress" TEXT, 
+"CustomerPhoneNo" TEXT,
+PRIMARY KEY("CustomerID" AUTOINCREMENT)
+);
+CREATE TABLE "Booking_Table" (
+"BookingID"  INTEGER NOT NULL,
+"BookingDate" DATE,
+"BookingPeople"  TEXT,
+"BookingTime"  TIME,
+"BookingRequest" Text,
+"CustomerID" INTEGER,
+PRIMARY KEY("BookingID" AUTOINCREMENT),
+CONSTRAINT "CustomerID_fk"  FOREIGN KEY("CustomerID") REFERENCES "Customer_Table"("CustomerID")
+);
+insert into Customer_Table (FCustomerName, LCustomerName,CustomerUserName,CustomerPwd, CustomerEmailAddress,CustomerPhoneNo) values ('James', 'Luu','Dinner', 'Megumin70', 'james43@outlook.com', '07546456121');
+insert into Customer_Table (FCustomerName, LCustomerName,CustomerUserName,CustomerPwd, CustomerEmailAddress,CustomerPhoneNo) values ('Marci', 'Keisha','Karci', 'Hello13', 'karcigaming@gmail.com', '07249316224');
+insert into Customer_Table (FCustomerName, LCustomerName,CustomerUserName,CustomerPwd, CustomerEmailAddress,CustomerPhoneNo) values ('Elaine', 'Wan','Neko', 'Lunasun', 'nekoneko@hotmail.com', '07435934538');
+insert into Booking_Table  (BookingDate,BookingPeople,BookingTime,BookingRequest, CustomerID) values ('08/10/2022','3','15:45','None',2);
+"""
+
+CustomerID = 1
+
+
+database_file = 'CustomerDetails.db'
+
+if os.path.exists(database_file):
+   os.remove(database_file)
+
+conn = sqlite3.connect(database_file)
+#Get a cursor pointing to the database
+cursor = conn.cursor()
+#Create the tables
+cursor.executescript(sql) # creates from DDL above, script more than 1 command
+#Commit to save everything
+conn.commit()
