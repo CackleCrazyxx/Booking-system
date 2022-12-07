@@ -1,0 +1,22 @@
+#################################
+# build login window             #
+#################################
+login = Window(app,title="Log In", height = 600, bg = "antiquewhite1", layout = 'grid') #this creates the login window
+login.hide()
+login_message = Text(login, text=" Welcome to Sushi House! Log In!", grid = [1,0]) #this tells the user what the window is for
+login_user1 = Text(login, text= "Username:", grid = [0,1]) #this tells the user what to enter
+user_textbox = TextBox(login, text="",width = 30, grid = [1,1]) #this gives the user space to enter the username
+login_pwd = Text(login, text= "Password:", grid = [0,2]) #this tells the user what to enter for the password box
+pwd_textbox = TextBox(login, text="",width = 30,  grid = [1,2])#this gives the user space to enter the password
+#
+log_in = PushButton(login, text="Log In", command=login_user,width = 15, grid = [1,3]) # this allows the user to try and login
+pic = Picture(login, image="sushi logo.JPG", width = 285, height = 285, grid=[1,5])
+btn_back = PushButton(login, text="Back", command=back, width = 15, grid = [1,4]) #this allows the user to go back to the main menu 
+
+menubar = MenuBar(login,#this adds a menu bar at the top of the login window
+                  toplevel=["Apperance","Fonts", "Size"], #these are to let the user know what they can change for accessibility 
+                  options=[
+                      [ ["Light Mode", Light_Mode], ["Dark Mode", Dark_Mode] ], #the colour modes
+					  [ ["Courier", Courier_font], ["Verdana", Verdana_font], ["Helvetica", Helvetica_font] ], #the fonts 
+					  [["10%", Zoom10],["20%", Zoom20],["30%", Zoom30],["40%", Zoom40],["50%", Zoom50]] #the zoom size
+                  ])
