@@ -1,0 +1,71 @@
+####################
+# Validation       #
+####################
+def sign_up_validation(): #validates the user input on the sign up window 
+	First_Name = FName_textbox.value 
+	Last_Name = LName_textbox.value
+	PhoneNum = PhoneNo_textbox.value
+	Password = Pwd_textbox.value
+
+	if First_Name == "": #checks if user has input anything in the first name field
+		info("Sign up Error","Please input your first name") #error message
+	elif Last_Name == "":#checks if user has input anything in the last name field
+		info("Sign up Error","Please input your last name")#error message
+	elif First_Name.isalpha()  == False: #checks if user has input anything but the alphabet for the name
+		info ("Sign up Error", "Invalid first name")#error message
+	elif Last_Name.isalpha()  == False: #checks if user has input anything but the alphabet for the name
+		info ("Sign up Error", "Invalid last name")#error message
+	elif "@" not in Email_textbox.value: #checks if the email has an @ sign
+		info("Sign up Error", "Must contain an @ sign")#error message
+	elif Username_textbox.value == "": #checks if user has input anything in the username name field
+		info("Sign up Error","Please input a Username")#error message
+	elif len(PhoneNo_textbox.value) != 11: #checks if the phone number has 11 digits
+		info("Sign up Error","Phone number must be 11 characters ")#error message
+	elif PhoneNum.isnumeric() == False: #checks to see if there are anything other than numbers in the phone number field
+		info("Sign up Error", "Invalid Number")#error message
+	elif len(Password) <8 or len(Password) >20: #this makes sure the user only input 8 - 20 characters for password
+		info("Sign up Error","Password must be 8 - 20 characters")#error message
+	elif Pwd_textbox.value != PwdCon_textbox.value: #this makes sure the confirmation password match the password
+		info("Sign up Error","Password doesn't match")#error message
+	else:
+		InsertdataSQL = ("INSERT INTO Customer_Table(FCustomerName, LCustomerName,CustomerUserName,CustomerPwd, CustomerEmailAddress,CustomerPhoneNo) VALUES ('"+ str(FName_textbox.value) + "', '"+ str(LName_textbox.value) + "','" + str(Username_textbox.value) + "', '" + str(Pwd_textbox.value) + "', '"  + str(Email_textbox.value) +"', '" + str(PhoneNo_textbox.value)+"')")
+		execute_sql(database_file,InsertdataSQL) #input the new user into the database
+
+		info("Sign up Successful", "Sign up Successful! Please Log In.")#pop up message
+
+		sign_up.hide() #closes sign_up window 
+		login.show() #open login window
+
+
+		 
+def booking_validation(People_amount, Booking_date, Time_choice, Special_text): #this validates the fields in the book window
+
+	now_list = [] #this creates a blank list for today's date
+	input_list = [] #this create a blank list for the date they choose
+	nowdate = datetime.now() # gets the date now
+	nowdate = nowdate.strftime('%d/%m/%Y') #formats the date to only show the date today
+	now_list = nowdate.split('/') #splits the date by the "/" 
+	input_list = Date_chosen.value.split('/') #input the split date into the blank list
+	if Date_chosen.value =='': # checks if the textbox is empty
+		info("Error!",'Please press "--Select Please--" to pick a date!') # error message
+	elif now_list[2] > input_list[2]: #checks the year is not in the past 
+		info("Error!","Please select a valid year")# error message
+	elif now_list[2] == input_list[2] and now_list[1] > input_list[1]: #checks the month is not in the past
+		info("Error!","Please select a valid month")# error message
+	elif now_list[2] == input_list[2] and now_list[1] == input_list[1] and now_list[0] > input_list[0]: #checks the date is not in the past
+		info("Error!","Please select a valid day in the future")# error message
+	elif Special_text.value == "":#this checks the user if they have anything in the special value
+		info ("Error!","Please leave it as None or input something")# error message
+	else:
+		InsertdataSQL = ("INSERT INTO Booking_Table(BookingDate,BookingPeople,BookingTime,BookingRequest, CustomerID) VALUES ('"+ str(Booking_date.value) + "', '" + str(People_amount.value) + "', '" + str(Time_choice.value) + "', '"  + str(Special_text.value) +"', '" + str(LoggedIn_ID)+"')")
+		execute_sql(database_file,InsertdataSQL) #input the new booking into the database
+		info('Thank you!','Thank you for the Booking!') # pop up message
+
+		Final_amount.value = People_amount.value #assign the amount of people to a new variable for the confirmation window
+		Final_date.value = Booking_date.value #assign the date to a new variable for the confirmation window
+		Confirmation_time.value = Time_choice.value #assign the time to a new variable for the confirmation window
+		Frequest.value = Special_text.value #assign any special requirements to a new variable for the confirmation window
+
+
+		Booking.hide() #hides the booking window
+		Confirmation.show() #opens the confirmation window 
