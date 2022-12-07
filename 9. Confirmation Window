@@ -1,0 +1,27 @@
+#################################
+# build Booking Confirmation    #
+#################################
+Confirmation= Window(app,title = 'Confirm Booking', width = 400, height = 500) #creates a new window
+Confirmation_box = Box(Confirmation, layout = "grid", border = True) #creates a boarder with a box
+Confirmation.hide() #hides the window
+Confirmation.bg = "antiquewhite1" #assign the window to a specific colour
+
+Confirmation_message = Text(Confirmation_box, text = ("Confirm Your Booking!"), grid = [0,0]) #title of what the window is 
+People_amount = Text(Confirmation_box, text="Amount of People: ", grid = [0,1], align="left") #tells what the user is looking at
+Final_amount = Text(Confirmation_box, grid=[1,1], align="left")
+Confirmation_date = Text(Confirmation_box, text = "Date: ", grid = [0,2], align="left")#tells what the user is looking at
+Final_date = Text(Confirmation_box, grid=[1,2],align="left")
+time_Confirmation = Text(Confirmation_box, text ="Time: ", grid = [0,3],align="left")#tells what the user is looking at
+Confirmation_time = Text(Confirmation_box, grid=[1,3],align="left")
+Confirmation_request = Text(Confirmation_box, text= "Special Request: ", grid = [0,4],align="left")#tells what the user is looking at
+Frequest = Text(Confirmation_box, grid=[1,4],align="left")
+btn_back = PushButton(Confirmation_box, text="Back", command=back_confirmation, width = 15, grid = [0,5], align = "left") #this allows the user to go back to the booking menu
+btn_exit = PushButton(Confirmation_box, text="Exit", command=exit_window, width = 15, grid = [1,5], align = "right") #this allows the user to leave the program
+pic = Picture(Confirmation, image="sushi logo.JPG", width = 285, height = 285) #this adds a picture
+
+menubar = MenuBar(Confirmation,
+                  toplevel=["Apperance","Fonts", "Size"],
+                  options=[
+                      [ ["Light Mode", Light_Mode], ["Dark Mode", Dark_Mode] ],
+					  [ ["Courier", Courier_font], ["Verdana", Verdana_font], ["Helvetica", Helvetica_font] ],
+					  [["10%", Zoom10],["20%", Zoom10],["30%", Zoom10],["40%", Zoom10],["50%", Zoom10]]
