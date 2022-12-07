@@ -1,0 +1,20 @@
+#################################
+# build main window             #
+#################################
+app = App(title='Main Menu', bg = 'antiquewhite1', width = 600, height =800) #this creates the main window
+message = Text(app, text =" Welcome to Sushi House!") #this gives the main widow a title
+text_blank = Text(app, text="")
+main_log_in = PushButton(app, text="Log In", command=login_window, width = 15) #this creates the login button
+text_blank = Text(app, text="")
+main_sign_up =  PushButton(app, text="Sign Up", command=sign_up_window, width = 15) #this creates the sign_up button
+text_blank = Text(app, text="")
+main_log_in = PushButton(app, text="Exit", command=exit_window, width = 15) #this creates the exit button
+pic = Picture(app, image="sushi logo.JPG", width = 285, height = 285) #this adds an image
+
+menubar = MenuBar(app, #this adds a menu bar at the top of the main menu window
+                  toplevel=["Appearance","Fonts", "Size"], #these are to let the user know what they can change for accessibility 
+                  options=[
+                      [ ["Light Mode", Light_Mode], ["Dark Mode", Dark_Mode] ], #the colour modes
+					  [ ["Courier", Courier_font], ["Verdana", Verdana_font], ["Helvetica", Helvetica_font] ], #the fonts 
+					  [["10%", Zoom10],["20%", Zoom20],["30%", Zoom30],["40%", Zoom40],["50%", Zoom50]] #the zoom size
+                  ])
