@@ -25,3 +25,4 @@ menubar = MenuBar(Confirmation,
                       [ ["Light Mode", Light_Mode], ["Dark Mode", Dark_Mode] ],
 					  [ ["Courier", Courier_font], ["Verdana", Verdana_font], ["Helvetica", Helvetica_font] ],
 					  [["10%", Zoom10],["20%", Zoom10],["30%", Zoom10],["40%", Zoom10],["50%", Zoom10]]
+		])
