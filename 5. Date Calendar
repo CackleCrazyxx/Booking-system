@@ -1,0 +1,12 @@
+def my_upd(l1,cal,window): #this creates the calendar
+	global datechosen #sets global datechosen from teh calendar
+	date=''
+	#datechosen = l1.config(text=cal.get_date())
+	dt=cal.selection_get()
+	date=cal.get_date()
+	l1 = date
+	#l1.config(date) # read and display date
+	#textdate.value = datechosen
+	date=dt.strftime("%d/%m/%Y") # format changed
+	Date_chosen.value = date
+	window.destroy() #hide your window when it is selected 
