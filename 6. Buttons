@@ -1,0 +1,41 @@
+###############
+# Buttons     #
+###############
+
+def date_btn(): #this creates the date button to let the user to choose
+	window = tk.Tk()
+
+	cal =Calendar(window,selectmode = 'day')
+	cal.grid(row=1, column = 1, padx=20)
+	l1 = tk.Label(window,bg='light blue')
+	l1.grid(row=1,column=2)
+
+	b1=tk.Button(window,text='Select',command=lambda:my_upd(l1,cal, window)) #this allows the user to confirm the date chosen
+	b1.grid(row=2,column=1)
+	#DateEntry(window, locale='en_US', date_pattern='mm/dd/y').pack()  # custom formatting 
+	window.mainloop()
+
+
+def login_window(): #this opens the login window when the user clicks the log in button
+	app.hide() #closes main menu
+	login.show(wait=True) #opens login window
+
+def sign_up_window(): #this opens the sign up window when the user clicks the log in button
+	app.hide()#closes main menu
+	sign_up.show(wait=True) #opens login window
+
+def booking_window(): #this opens the review window when the user clicks the log in button
+	login.hide()#closes login window
+	Booking.show()#open booking window
+
+def back(): #this hides all the windows 
+	login.hide()#closes login window
+	sign_up.hide()#closes sign_up window
+	app.show()#open main menu
+
+def back_confirmation(): #this hides the confimation window and open the booking window 
+	Confirmation.hide() #closes confirmation window
+	Booking.show() #open booking window
+
+def exit_window(): #this stops the app
+    app.destroy() #this closes the app
