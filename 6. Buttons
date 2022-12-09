@@ -37,5 +37,11 @@ def back_confirmation(): #this hides the confimation window and open the booking
 	Confirmation.hide() #closes confirmation window
 	Booking.show() #open booking window
 
+
+def update_pwd_window():
+	login.hide()
+	update_pwd.show()
+
+
 def exit_window(): #this stops the app
     app.destroy() #this closes the app
